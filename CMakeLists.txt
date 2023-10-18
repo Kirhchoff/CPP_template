@@ -17,11 +17,15 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ${CMAKE_PROJECT_NAME}_lib)
 Include(FetchContent)
 
 FetchContent_Declare(
-  Catch2
-  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-  GIT_TAG        v3.0.1 # or a later release
+  googletest
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG        v1.14.0
 )
-FetchContent_MakeAvailable(Catch2)
+FetchContent_MakeAvailable(googletest)
 
 add_executable(tests test/hello_test.cpp)
-target_link_libraries(tests PRIVATE Catch2::Catch2WithMain ${CMAKE_PROJECT_NAME}_lib)
+target_link_libraries(tests PRIVATE GTest::gtest_main ${CMAKE_PROJECT_NAME}_lib)
+
+
+include(GoogleTest)
+gtest_discover_tests(tests)

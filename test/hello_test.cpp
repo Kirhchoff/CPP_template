@@ -1,6 +1,6 @@
-#include <catch2/catch_test_macros.hpp>
+#include <gtest/gtest.h>
 #include "hello.h"
 
-TEST_CASE("test hello") {
-    REQUIRE(Hello{}.hello() == "hello");
+TEST(HelloTest, BasicAssertions) {
+  EXPECT_EQ(Hello{}.hello(), "hello");
 }
